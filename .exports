@@ -1,0 +1,11 @@
+# vscode code command
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+# brew path
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+
+# default editor
+export EDITOR=vim
+
+# default anaconda path
+export PATH="/usr/local/anaconda3/bin:$PATH"
