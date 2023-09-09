@@ -13,6 +13,11 @@ brew "pre-commit"
 brew "neovim"
 brew "wget"
 brew "fzf"
+brew "poetry"
+brew "pyenv"
+brew "pynvim"
+brew "neovim"
+
 
 cask "anaconda"
 cask "google-chrome"

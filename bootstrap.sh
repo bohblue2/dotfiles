@@ -22,4 +22,14 @@ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/to
 [ ! -f $HOME/.zshrc ] && ln -nfs $HOME/dotfiles/.zshrc $HOME/.zshrc
 source $HOME/.zshrc
 
+# Poetry
+mkdir $ZSH/plugins/poetry
+poetry completions zsh > $ZSH/plugins/poetry/_poetry
+
+# Pyenv
+pyenv install 3.9.0
+pyenv global 3.9.0 
+
+# .alias, .exports
+
 printf '\n install success! \n'
