@@ -22,6 +22,11 @@ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/to
 [ ! -f $HOME/.zshrc ] && ln -nfs $HOME/dotfiles/.zshrc $HOME/.zshrc
 source $HOME/.zshrc
 
+# Anaconda
+/opt/homebrew/anaconda3/bin/conda init zsh
+source ~/.zshrc
+conda config --set auto_activate_base false
+
 # Poetry
 mkdir $ZSH/plugins/poetry
 poetry completions zsh > $ZSH/plugins/poetry/_poetry
