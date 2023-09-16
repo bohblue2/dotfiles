@@ -32,6 +32,7 @@ cask "telegram"
 cask "intellij-idea"
 cask "pycharm"
 cask "obsidian"
+cask "discord"
 
 mas "KakaoTalk", id: 869223134
 mas "Slack", id: 803453959
