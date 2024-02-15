@@ -17,6 +17,7 @@ brew "poetry"
 brew "pyenv"
 brew "pynvim"
 brew "neovim"
+brew "gh"
 
 
 cask "anaconda"
