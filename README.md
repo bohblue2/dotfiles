@@ -5,7 +5,7 @@ For various reasons, there are some things that need to be handled by hand rathe
 
 ## Manual Setup
 ### Karabiner
-1. Unzip the `zips/karabiner.zip` file under `~./config/`
+1. Unzip the `(this repo)/zips/karabiner.zip` file under `~./config/`
 2. all configuration files should exist under `~./config/karabiner`.
 
 ## References 
