@@ -35,6 +35,13 @@ poetry completions zsh > $ZSH/plugins/poetry/_poetry
 pyenv install 3.9.0
 pyenv global 3.9.0 
 
+# vimrc
+vimrc_path="$HOME/.vimrc"
+echo "set backspace=indent,eol,start" >> "$vimrc_path"
+echo "Vim 설정이 업데이트되었습니다."
+
 # .alias, .exports
+[ ! -f $HOME/.alias ] && ln -nfs $HOME/dotfiles/.alias $HOME/.alias
+[ ! -f $HOME/.exports ] && ln -nfs $HOME/dotfiles/.exports $HOME/.exports
 
 printf '\n install success! \n'

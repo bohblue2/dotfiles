@@ -19,7 +19,6 @@ brew "pynvim"
 brew "neovim"
 brew "gh"
 
-
 cask "anaconda"
 cask "google-chrome"
 cask "db-browser-for-sqlite"
@@ -36,7 +35,7 @@ cask "obsidian"
 cask "discord"
 cask "obs"
 cask "blackhole-2ch"
-
+cask "zotero"
 
 mas "KakaoTalk", id: 869223134
 mas "Slack", id: 803453959

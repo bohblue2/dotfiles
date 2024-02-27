@@ -1,1 +1,19 @@
-#!/bin/zsh
+#!/usr/bin/env bash
+
+#-------------------------------------------------------------------------------
+# Thanks to Mathias Bynens! https://mths.be/osx
+# And https://github.com/appkr/dotfiles/blob/master/.osx
+#-------------------------------------------------------------------------------
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+#-------------------------------------------------------------------------------
+# Power on
+# @see https://www.iphonehacks.com/2020/02/how-disable-macbook-booting-automatically-lid-opened.html
+#-------------------------------------------------------------------------------
+
+sudo nvram AutoBoot=%00
