@@ -18,6 +18,7 @@ brew "pyenv"
 brew "pynvim"
 brew "neovim"
 brew "gh"
+brew "awscli"
 
 cask "anaconda"
 cask "google-chrome"
