@@ -25,13 +25,13 @@ cat <<'EOF' > "$OMO_FILE"
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
 
   "agents": {
-    "sisyphus": { "model": "openai/gpt-5.2-codex" },
-    "oracle": { "model": "openai/gpt-5.2", "variant": "high" },
+    "sisyphus": { "model": "openai/gpt-5.2-codex", "variant": "xhigh" },
+    "oracle": { "model": "openai/gpt-5.2", "variant": "xhigh" },
     "librarian": { "model": "openai/gpt-5.2" },
-    "explore": { "model": "github-copilot/gpt-5-mini" },
+    "explore": { "model": "github-copilot/gpt-5-nano" },
     "multimodal-looker": { "model": "openai/gpt-5.2" },
-    "prometheus": { "model": "openai/gpt-5.2-codex", "variant": "high" },
-    "metis": { "model": "openai/gpt-5.2" },
+    "prometheus": { "model": "openai/gpt-5.2-codex", "variant": "xhigh" },
+    "metis": { "model": "openai/gpt-5.2", "variant": "medium" },
     "momus": { "model": "openai/gpt-5.2", "variant": "medium" },
     "atlas": { "model": "openai/gpt-5.2", "variant": "high" }
   },
@@ -54,25 +54,86 @@ EOF
 echo "==> [3/6] Writing config.json"
 
 cat <<'EOF' > "$MAIN_FILE"
+
+
 {
   "$schema": "https://opencode.ai/config.json",
-
-  "plugin": ["oh-my-opencode@latest"],
-
-  "model": "opencode/gpt-5.2",
+  "default_agent": "charles",
+  "theme": "opencode",
+  "share": "manual",
+  "autoupdate": true,
+  "keybinds": {
+    "app_exit": "ctrl+d,<leader>q",
+    "session_interrupt": "ctrl+c,escape",
+    "input_clear": "ctrl+l"
+  },
+  "plugin": [
+    "oh-my-opencode@3.1.6",
+    "opencode-openai-codex-auth"
+  ],
+  "tui": {
+    "scroll_speed": 5,
+    "scroll_acceleration": {
+      "enabled": true
+    },
+    "diff_style": "auto"
+  },
 
   "agent": {
+    "charles": {
+      "description": "A-tier MAIN for Research and Complex Problem solving, The savant. Reasoning Complexity: extreme. Handles the most challenging tasks with deep analysis and multi-step problem solving.",
+      "model": "openai/gpt-5.2",
+      "permission": {
+        "write": "allow",
+        "edit": "allow",
+        "bash": "allow"
+      },
+      "options": {
+        "reasoning": {
+          "effort": "xhigh",
+          "summary": "none"
+        },
+        "text": {
+          "verbosity": "high"
+        }
+      }
+    },
+
+    "main-developer": {
+      "description": "A-tier MAIN for development. Complex implementation: new features, architectural changes, multi-file refactoring, bugs requiring deep reasoning.",
+      "model": "openai/gpt-5.2-codex",
+      "temperature": 0.2,
+      "permission": {
+        "write": "allow",
+        "edit": "allow",
+        "bash": "allow"
+      },
+      "options": {
+        "reasoning": {
+          "effort": "xhigh",
+          "summary": "none"
+        },
+        "text": {
+          "verbosity": "medium"
+        }
+      }
+    },
+
+
     "plan": {
       "mode": "primary",
       "model": "opencode/gpt-5.2-codex",
       "reasoningEffort": "xhigh",
-      "permission": { "edit": "ask", "bash": "ask" }
+      "permission": {
+        "edit": "ask",
+        "bash": "ask"
+      }
     },
 
     "build": {
       "mode": "primary",
       "model": "opencode/gpt-5.2-codex",
-      "reasoningEffort": "high",
+      "reasoningEffort": "xhigh",
       "permission": {
         "bash": {
           "*": "ask",
@@ -84,13 +145,12 @@ cat <<'EOF' > "$MAIN_FILE"
       }
     },
 
-    "general": {
+    "explore-shallower": {
       "mode": "subagent",
-      "model": "openai/gpt-5.2",
-      "reasoningEffort": "high"
+      "model": "openai/gpt-5-nano"
     },
 
-    "explore": {
+    "explore-deeper": {
       "mode": "subagent",
       "model": "openai/gpt-5-mini"
     }
