@@ -122,7 +122,7 @@ cat <<'EOF' > "$MAIN_FILE"
 
     "plan": {
       "mode": "primary",
-      "model": "opencode/gpt-5.2-codex",
+      "model": "openai/gpt-5.2-codex",
       "reasoningEffort": "xhigh",
       "permission": {
         "edit": "ask",
@@ -132,7 +132,7 @@ cat <<'EOF' > "$MAIN_FILE"
 
     "build": {
       "mode": "primary",
-      "model": "opencode/gpt-5.2-codex",
+      "model": "openai/gpt-5.2-codex",
       "reasoningEffort": "xhigh",
       "permission": {
         "bash": {
