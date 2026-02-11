@@ -23,7 +23,20 @@ echo "==> [2/6] Writing oh-my-opencode.json"
 cat <<'EOF' > "$OMO_FILE"
 {
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
-
+  "lsp": {
+    "marksman": {
+      "command": [
+        "marksman",
+        "server"
+      ],
+      "extensions": [
+        ".md"
+      ]
+    }
+  },
+  "sisyphus_agent": {
+    "disabled": true
+  },
   "agents": {
     "sisyphus": { "model": "openai/gpt-5.3-codex", "variant": "xhigh" },
     "oracle": { "model": "openai/gpt-5.2", "variant": "xhigh" },
