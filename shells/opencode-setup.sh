@@ -89,7 +89,7 @@ cat <<'EOF' > "$MAIN_FILE"
     },
     "diff_style": "auto"
   },
-
+  
   "agent": {
     "charles": {
       "description": "A-tier MAIN for Research and Complex Problem solving, The savant. Reasoning Complexity: extreme. Handles the most challenging tasks with deep analysis and multi-step problem solving.",
@@ -110,29 +110,14 @@ cat <<'EOF' > "$MAIN_FILE"
       }
     },
 
-    "build": {
-      "mode": "primary",
-      "model": "openai/gpt-5.3-codex",
-      "reasoningEffort": "xhigh",
-      "permission": {
-        "bash": {
-          "*": "ask",
-          "git *": "allow",
-          "rg *": "allow",
-          "grep *": "allow"
-        },
-        "edit": "ask"
-      }
-    },
-
     "explore-shallower": {
       "mode": "subagent",
-      "model": "openai/gpt-5.1-codex-mini"
+      "model": "openai/gpt-5.3-codex-spark"
     },
 
     "explore-deeper": {
       "mode": "subagent",
-      "model": "openai/gpt-5.1-codex-mini"
+      "model": "openai/gpt-5.3-codex"
     }
   }
 }
