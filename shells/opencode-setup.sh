@@ -23,27 +23,40 @@ echo "==> [2/6] Writing oh-my-opencode.json"
 cat <<'EOF' > "$OMO_FILE"
 {
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
-
-  "agents": {
-    "sisyphus": { "model": "openai/gpt-5.2-codex", "variant": "xhigh" },
-    "oracle": { "model": "openai/gpt-5.2", "variant": "xhigh" },
-    "librarian": { "model": "openai/gpt-5.2" },
-    "explore": { "model": "github-copilot/gpt-5-nano" },
-    "multimodal-looker": { "model": "openai/gpt-5.2" },
-    "prometheus": { "model": "openai/gpt-5.2-codex", "variant": "xhigh" },
-    "metis": { "model": "openai/gpt-5.2", "variant": "medium" },
-    "momus": { "model": "openai/gpt-5.2", "variant": "medium" },
-    "atlas": { "model": "openai/gpt-5.2", "variant": "high" }
+  "lsp": {
+    "marksman": {
+      "command": [
+        "marksman",
+        "server"
+      ],
+      "extensions": [
+        ".md"
+      ]
+    }
   },
-
+  "sisyphus_agent": {
+    "disabled": true
+  },
+  "agents": {
+    "sisyphus": { "model": "openai/gpt-5.3-codex", "variant": "xhigh" },
+    "oracle": { "model": "openai/gpt-5.2", "variant": "xhigh" },
+    "librarian": { "model": "openai/gpt-5.1-codex-mini" },
+    "explore": { "model": "openai/gpt-5.1-codex-mini" },
+    "multimodal-looker": { "model": "openai/gpt-5.2" },
+    "prometheus": { "model": "openai/gpt-5.3-codex", "variant": "xhigh" },
+    "metis": { "model": "openai/gpt-5.3-codex", "variant": "xhigh" },
+    "momus": { "model": "openai/gpt-5.2", "variant": "medium" },
+    "atlas": { "model": "openai/gpt-5.3-codex", "variant": "medium" }
+  },
   "categories": {
-    "visual-engineering": { "model": "github-copilot/gemini-3-pro" },
-    "ultrabrain": { "model": "openai/gpt-5.2-codex", "variant": "xhigh" },
-    "artistry": { "model": "github-copilot/gemini-3-pro", "variant": "max" },
-    "quick": { "model": "opeani/gpt-5-mini" },
-    "unspecified-low": { "model": "github-copilot/claude-sonnet-4.5" },
-    "unspecified-high": { "model": "github-copilot/claude-sonnet-4.5" },
-    "writing": { "model": "openai/gpt-5-mini" }
+    "visual-engineering": { "model": "openai/gpt-5.3-codex" },
+    "ultrabrain": { "model": "openai/gpt-5.3-codex", "variant": "xhigh" },
+    "deep": {"model": "openai/gpt-5.3-codex", "variant": "xhigh"},
+    "artistry": { "model": "openai/gpt-5.2", "variant": "high" },
+    "quick": { "model": "openai/gpt-5.1-codex-mini" },
+    "unspecified-low": { "model": "openai/gpt-5.1-codex-mini" },
+    "unspecified-high": { "model": "openai/gpt-5.3-codex" },
+    "writing": { "model": "openai/gpt-5.1-codex-mini" }
   }
 }
 EOF
@@ -54,8 +67,6 @@ EOF
 echo "==> [3/6] Writing config.json"
 
 cat <<'EOF' > "$MAIN_FILE"
-
-
 {
   "$schema": "https://opencode.ai/config.json",
   "default_agent": "charles",
@@ -68,7 +79,7 @@ cat <<'EOF' > "$MAIN_FILE"
     "input_clear": "ctrl+l"
   },
   "plugin": [
-    "oh-my-opencode@3.1.6",
+    "oh-my-opencode@3.4.0",
     "opencode-openai-codex-auth"
   ],
   "tui": {
@@ -99,40 +110,9 @@ cat <<'EOF' > "$MAIN_FILE"
       }
     },
 
-    "main-developer": {
-      "description": "A-tier MAIN for development. Complex implementation: new features, architectural changes, multi-file refactoring, bugs requiring deep reasoning.",
-      "model": "openai/gpt-5.2-codex",
-      "temperature": 0.2,
-      "permission": {
-        "write": "allow",
-        "edit": "allow",
-        "bash": "allow"
-      },
-      "options": {
-        "reasoning": {
-          "effort": "xhigh",
-          "summary": "none"
-        },
-        "text": {
-          "verbosity": "medium"
-        }
-      }
-    },
-
-
-    "plan": {
-      "mode": "primary",
-      "model": "opencode/gpt-5.2-codex",
-      "reasoningEffort": "xhigh",
-      "permission": {
-        "edit": "ask",
-        "bash": "ask"
-      }
-    },
-
     "build": {
       "mode": "primary",
-      "model": "opencode/gpt-5.2-codex",
+      "model": "openai/gpt-5.3-codex",
       "reasoningEffort": "xhigh",
       "permission": {
         "bash": {
@@ -147,12 +127,12 @@ cat <<'EOF' > "$MAIN_FILE"
 
     "explore-shallower": {
       "mode": "subagent",
-      "model": "openai/gpt-5-nano"
+      "model": "openai/gpt-5.1-codex-mini"
     },
 
     "explore-deeper": {
       "mode": "subagent",
-      "model": "openai/gpt-5-mini"
+      "model": "openai/gpt-5.1-codex-mini"
     }
   }
 }
