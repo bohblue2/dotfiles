@@ -1,0 +1,15 @@
+{
+  "workbench.editorAssociations": {
+    "*.md": "vscode.markdown.preview.editor"
+  },
+  "python.defaultInterpreterPath": "${workspace}.venv/bin/python",
+  "python.terminal.activateEnvironment": true,
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/__init__.py": true
+  },
+  "search.exclude": {
+    "**/__pycache__": true,
+    "**/__init__.py": true
+  }
+}
