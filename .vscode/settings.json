@@ -11,5 +11,64 @@
   "search.exclude": {
     "**/__pycache__": true,
     "**/__init__.py": true
-  }
+  },
+
+  // ============================================================
+  // BasedPyright (START HERE)
+  // ============================================================
+  // Run type checking for the whole workspace (not just open files)
+  "basedpyright.analysis.diagnosticMode": "workspace",
+  // If you want BasedPyright to be *type-checker only* and let another
+  // language server handle IntelliSense, uncomment:
+  // "basedpyright.disableLanguageServices": true,
+  // If you want less noise/faster checks, switch to open files only:
+  // "basedpyright.analysis.diagnosticMode": "openFilesOnly",
+
+  // ============================================================
+  // Pylance (optional)
+  // ============================================================
+  // Common setup: keep Pylance IntelliSense, but disable its type checking
+  // so BasedPyright is the single source of type diagnostics.
+  //
+  // "python.analysis.typeCheckingMode": "off",
+  // "python.analysis.diagnosticMode": "openFilesOnly",
+  // "python.analysis.autoImportCompletions": true,
+  // If instead you want Pylance to also type-check (not recommended with BasedPyright),
+  // you’d set:
+  // "python.analysis.typeCheckingMode": "basic" | "standard" | "strict",
+
+  // ============================================================
+  // Ruff (optional lint + format)
+  // ============================================================
+  // Ruff VSCode extension settings are under `ruff.*`.
+  //
+  // Enable Ruff formatting and set it as the default formatter for Python.
+  // "[python]": {
+  //   "editor.defaultFormatter": "charliermarsh.ruff",
+  //   "editor.formatOnSave": true,
+  //   "editor.codeActionsOnSave": {
+  //     // Use Ruff for "fix all" and import organization.
+  //     // Many teams prefer "explicit" to avoid surprise changes on autosave.
+  //     "source.fixAll": "explicit",
+  //     "source.organizeImports": "explicit"
+  //   }
+  // },
+  //
+  // Ruff behavior toggles:
+  // "ruff.lint.run": "onType",        // or "onSave"
+  // "ruff.format.enable": true,
+
+  // ============================================================
+  // ty (optional type checker / language server)
+  // ============================================================
+  // If you experiment with ty, keep in mind it can overlap with BasedPyright.
+  // Use one as the primary type checker to avoid duplicate diagnostics.
+  //
+  // "ty.disableLanguageServices": true, // ty as checker-only
+  // "ty.configurationFile": "./ty.toml",
+  // "ty.configuration": {
+  //   "rules": {
+  //     "unresolved-reference": "warn"
+  //   }
+  // }
 }
