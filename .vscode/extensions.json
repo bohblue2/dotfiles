@@ -1,0 +1,30 @@
+{
+  "recommendations": [
+    // Python
+    // ================================================
+    // "ms-python.python",
+    // ================================================
+    "anysphere.cursorpyright",
+
+    // Language Servers
+    "detachhead.basedpyright",
+    "charliermarsh.ruff",
+    "astral-sh.ty",
+
+    // C, Cpp
+    "vadimcn.vscode-lldb",
+    // ================================================
+    // "ms-vscode.cpptools",
+    // ================================================
+    "anysphere.cpptools",
+
+    // Rust
+    "rust-lang.rust-analyzer",
+    // Markdown
+    "yzhang.markdown-all-in-one",
+
+    // Git, Github, CI/CD
+    "eamodio.gitlens",
+    "github.vscode-github",
+  ]
+}
