@@ -34,29 +34,37 @@ cat <<'EOF' > "$OMO_FILE"
       ]
     }
   },
-  "sisyphus_agent": {
-    "disabled": true
+  "background_task": {
+    "defaultConcurrency": 100,
+    "providerConcurrency": {
+      "openai": 100
+    },
+    "modelConcurrency": {
+      "openai/gpt-5.3-codex-spark": 100,
+      "openai/gpt-5.3-codex": 100,
+      "openai/gpt-5.2": 100
+    }
   },
   "agents": {
-    "sisyphus": { "model": "openai/gpt-5.3-codex", "variant": "xhigh" },
+    "sisyphus": { "model": "openai/gpt-5.3-codex", "variant": "medium" },
+    "prometheus": { "model": "openai/gpt-5.2", "variant": "xhigh" },
+    "metis": { "model": "openai/gpt-5.2", "variant": "xhigh" },
+    "momus": { "model": "openai/gpt-5.2", "variant": "high" },
+    "atlas": { "model": "openai/gpt-5.3-codex", "variant": "xhigh" },
     "oracle": { "model": "openai/gpt-5.2", "variant": "xhigh" },
-    "librarian": { "model": "openai/gpt-5.1-codex-mini" },
-    "explore": { "model": "openai/gpt-5.1-codex-mini" },
-    "multimodal-looker": { "model": "openai/gpt-5.2" },
-    "prometheus": { "model": "openai/gpt-5.3-codex", "variant": "xhigh" },
-    "metis": { "model": "openai/gpt-5.3-codex", "variant": "xhigh" },
-    "momus": { "model": "openai/gpt-5.2", "variant": "medium" },
-    "atlas": { "model": "openai/gpt-5.3-codex", "variant": "medium" }
+    "librarian": { "model": "openai/gpt-5.3-codex-spark", "variant": "low" },
+    "explore": { "model": "openai/gpt-5.3-codex-spark", "variant": "low" },
+    "multimodal-looker": { "model": "openai/gpt-5.2", "variant": "high" }
   },
   "categories": {
-    "visual-engineering": { "model": "openai/gpt-5.3-codex" },
-    "ultrabrain": { "model": "openai/gpt-5.3-codex", "variant": "xhigh" },
+    "quick": { "model": "openai/gpt-5.3-codex-spark", "variant": "low" },
+    "unspecified-low": { "model": "openai/gpt-5.3-codex-spark", "variant": "low" },
+    "unspecified-high": { "model": "openai/gpt-5.3-codex", "variant": "high" },
     "deep": {"model": "openai/gpt-5.3-codex", "variant": "xhigh"},
-    "artistry": { "model": "openai/gpt-5.2", "variant": "high" },
-    "quick": { "model": "openai/gpt-5.1-codex-mini" },
-    "unspecified-low": { "model": "openai/gpt-5.1-codex-mini" },
-    "unspecified-high": { "model": "openai/gpt-5.3-codex" },
-    "writing": { "model": "openai/gpt-5.1-codex-mini" }
+    "ultrabrain": { "model": "openai/gpt-5.2", "variant": "xhigh" },
+    "visual-engineering": { "model": "openai/gpt-5.3-codex", "variant": "high" },
+    "writing": { "model": "openai/gpt-5.2", "variant": "medium" },
+    "artistry": { "model": "openai/gpt-5.2", "variant": "high" }
   }
 }
 EOF
@@ -70,7 +78,7 @@ cat <<'EOF' > "$MAIN_FILE"
 {
   "$schema": "https://opencode.ai/config.json",
   "default_agent": "charles",
-  "theme": "opencode",
+  "theme": "system",
   "share": "manual",
   "autoupdate": true,
   "keybinds": {
@@ -79,14 +87,13 @@ cat <<'EOF' > "$MAIN_FILE"
     "input_clear": "ctrl+l"
   },
   "plugin": [
-    "oh-my-opencode@3.4.0",
+    "oh-my-opencode",
     "opencode-openai-codex-auth"
   ],
+
   "tui": {
     "scroll_speed": 5,
-    "scroll_acceleration": {
-      "enabled": true
-    },
+    "scroll_acceleration": { "enabled": true },
     "diff_style": "auto"
   },
 
@@ -179,11 +186,17 @@ if ! command -v opencode >/dev/null 2>&1; then
 fi
 
 ############################################
+# ast-grep installation
+############################################
+echo "==> [5.5/6] Installing ast-grep"
+npm install -g @ast-grep/cli
+
+############################################
 # opencode diagnostics
 ############################################
 echo "==> [6/6] opencode diagnostics"
 opencode config list || true
-opencode doctor || true
+bunx oh-my-opencode doctor --verbose
 
 echo
 echo "🎉 opencode setup completed successfully"

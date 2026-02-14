@@ -19,6 +19,7 @@ brew "pynvim"
 brew "neovim"
 brew "gh"
 brew "awscli"
+brew "terraform"
 
 cask "anaconda"
 cask "google-chrome"
