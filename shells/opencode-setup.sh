@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/usr/bin/zsh
+set -eo 
 
 ############################################
 # opencode full bootstrap script
@@ -10,7 +10,10 @@ set -euo pipefail
 
 CONFIG_DIR="$HOME/.config/opencode"
 OMO_FILE="$CONFIG_DIR/oh-my-opencode.json"
-MAIN_FILE="$CONFIG_DIR/config.json"
+MAIN_FILE="$CONFIG_DIR/opencode.json"
+
+rm -rf $OMO_FILE
+rm -rf $MAIN_FILE
 
 echo "==> [1/6] Create config directory"
 mkdir -p "$CONFIG_DIR"
