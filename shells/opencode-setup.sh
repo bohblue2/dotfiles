@@ -93,6 +93,17 @@ cat <<'EOF' > "$MAIN_FILE"
     "oh-my-opencode",
     "opencode-openai-codex-auth"
   ],
+  
+  "mcp": {
+    "playwright": {
+      "type": "local",
+      "command": [
+        "npx",
+        "@playwright/mcp@latest"
+      ],
+      "enabled": true
+    }
+  },
 
   "tui": {
     "scroll_speed": 5,
