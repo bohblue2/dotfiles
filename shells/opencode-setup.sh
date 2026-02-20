@@ -35,6 +35,15 @@ cat <<'EOF' > "$OMO_FILE"
       "extensions": [
         ".md"
       ]
+    },
+    "my-server": {
+      "command": [
+        "my-lsp",
+        "--stdio"
+      ],
+      "extensions": [
+        ".toml"
+      ]
     }
   },
   "background_task": {
