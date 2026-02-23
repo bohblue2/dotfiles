@@ -89,7 +89,7 @@ echo "==> [3/6] Writing config.json"
 cat <<'EOF' > "$MAIN_FILE"
 {
   "$schema": "https://opencode.ai/config.json",
-  "default_agent": "charles",
+  "default_agent": "sisyphus",
   "theme": "system",
   "share": "manual",
   "autoupdate": true,
@@ -115,7 +115,7 @@ cat <<'EOF' > "$MAIN_FILE"
   },
 
   "tui": {
-    "scroll_speed": 5,
+    "scroll_speed": 12,
     "scroll_acceleration": { "enabled": true },
     "diff_style": "auto"
   },
