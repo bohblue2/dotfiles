@@ -26,6 +26,8 @@ For various reasons, there are some things that need to be handled by hand rathe
 ### github/copilot-auth
 ### opencode-auth
 
+### tmux
+tmux source-file ~/.tmux.conf
 
 
 ### Karabiner
