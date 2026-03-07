@@ -1,75 +1,158 @@
-{
-  "workbench.editorAssociations": {
-    "*.md": "vscode.markdown.preview.editor"
-  },
-  "python.defaultInterpreterPath": "${workspace}.venv/bin/python",
-  "python.terminal.activateEnvironment": true,
-  "files.exclude": {
-    "**/__pycache__": true,
-    "**/__init__.py": true,
-    "**/.git": false,
-  },
-  "search.exclude": {
-    "**/__pycache__": true,
-    "**/__init__.py": true,
-    "**/.git": true,
-  },
-  // ============================================================
-  // BasedPyright (START HERE)
-  // ============================================================
-  // Run type checking for the whole workspace (not just open files)
-  "basedpyright.analysis.diagnosticMode": "workspace",
-  // If you want BasedPyright to be *type-checker only* and let another
-  // language server handle IntelliSense, uncomment:
-  // "basedpyright.disableLanguageServices": true,
-  // If you want less noise/faster checks, switch to open files only:
-  // "basedpyright.analysis.diagnosticMode": "openFilesOnly",
+ {
+    "window.commandCenter": true,
+    "terminal.integrated.profiles.windows": {
+      "PowerShell": {
+        "source": "PowerShell",
+        "icon": "terminal-powershell"
+      },
+      "Command Prompt": {
+        "path": [
+          "${env:windir}\\Sysnative\\cmd.exe",
+          "${env:windir}\\System32\\cmd.exe"
+        ],
+        "args": [],
+        "icon": "terminal-cmd"
+      },
+      "Git Bash": {
+        "source": "Git Bash"
+      },
+      "Ubuntu-20.04 (WSL)": {
+        "path": "C:\\WINDOWS\\System32\\wsl.exe",
+        "args": [
+          "-d",
+          "Ubuntu-20.04"
+        ]
+      }
+    },
+    "terminal.integrated.defaultProfile.windows": "Ubuntu-20.04 (WSL)",
+    "files.autoSave": "afterDelay",
+    "explorer.confirmDragAndDrop": false,
+    "notebook.output.textLineLimit": 200,
+    "workbench.editorLargeFileConfirmation": 50,
+    "remote.autoForwardPortsSource": "hybrid",
+    "diffEditor.maxComputationTime": 0,
+    "git.openRepositoryInParentFolders": "never",
+    "editor.fastScrollSensitivity": 1.5,
+    "editor.mouseWheelScrollSensitivity": 10,
+    "jupyter.askForKernelRestart": false,
+    "cursor.composer.shouldChimeAfterChatFinishes": true,
 
-  // ============================================================
-  // Pylance (optional)
-  // ============================================================
-  // Common setup: keep Pylance IntelliSense, but disable its type checking
-  // so BasedPyright is the single source of type diagnostics.
-  //
-  // "python.analysis.typeCheckingMode": "off",
-  // "python.analysis.diagnosticMode": "openFilesOnly",
-  // "python.analysis.autoImportCompletions": true,
-  // If instead you want Pylance to also type-check (not recommended with BasedPyright),
-  // you’d set:
-  // "python.analysis.typeCheckingMode": "basic" | "standard" | "strict",
+    "workbench.editorAssociations": {
+      "*.md": "vscode.markdown.preview.editor"
+    },
+    "python.terminal.activateEnvironment": true,
+    "files.exclude": {
+      "**/__pycache__": true,
+      "**/__init__.py": true,
+      "**/.venv": true,
+      "**/.git": false
+    },
+    "search.exclude": {
+      "**/__pycache__": true,
+      "**/__init__.py": true,
+      "**/.venv": true,
+      "**/.git": true
+    },
 
-  // ============================================================
-  // Ruff (optional lint + format)
-  // ============================================================
-  // Ruff VSCode extension settings are under `ruff.*`.
-  //
-  // Enable Ruff formatting and set it as the default formatter for Python.
-  // "[python]": {
-  //   "editor.defaultFormatter": "charliermarsh.ruff",
-  //   "editor.formatOnSave": true,
-  //   "editor.codeActionsOnSave": {
-  //     // Use Ruff for "fix all" and import organization.
-  //     // Many teams prefer "explicit" to avoid surprise changes on autosave.
-  //     "source.fixAll": "explicit",
-  //     "source.organizeImports": "explicit"
-  //   }
-  // },
-  //
-  // Ruff behavior toggles:
-  // "ruff.lint.run": "onType",        // or "onSave"
-  // "ruff.format.enable": true,
+    "python.languageServer": "None",
+    "python.linting.enabled": false,
 
-  // ============================================================
-  // ty (optional type checker / language server)
-  // ============================================================
-  // If you experiment with ty, keep in mind it can overlap with BasedPyright.
-  // Use one as the primary type checker to avoid duplicate diagnostics.
-  //
-  // "ty.disableLanguageServices": true, // ty as checker-only
-  // "ty.configurationFile": "./ty.toml",
-  // "ty.configuration": {
-  //   "rules": {
-  //     "unresolved-reference": "warn"
-  //   }
-  // }
-}
+    "cursorpyright.disableLanguageServices": true,
+    "cursorpyright.analysis.typeCheckingMode": "off",
+    "cursorpyright.analysis.diagnosticMode": "workspace",
+    "cursorpyright.analysis.exclude": [
+      "**/.venv/**",
+      "**/__pycache__/**",
+      "**/.git/**",
+      "**/.ruff_cache/**",
+      "**/.pytest_cache/**",
+      "**/.mypy_cache/**",
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/target/**",
+    ],
+    "cursorpyright.analysis.useLibraryCodeForTypes": false,
+    "cursorpyright.analysis.diagnosticSeverityOverrides": {
+      "reportUnusedImport": "warning",
+      "reportUnusedVariable": "warning",
+      "reportUnusedFunction": "warning",
+      "reportUnusedClass": "warning",
+      "reportUnusedCallResult": false,
+      "reportPossiblyUnboundVariable": false
+    },
+
+    "ruff.enable": true,
+    "ruff.lint.enable": true,
+    "ruff.nativeServer": "on",
+    "ruff.lint.ignore": [
+      "F821"
+    ],
+    "ruff.lineLength": 150,
+
+    "[python]": {
+      "editor.defaultFormatter": "charliermarsh.ruff",
+      "editor.formatOnSave": true,
+      "editor.formatOnSaveMode": "modificationsIfAvailable",
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit",
+        "source.fixAll": "explicit"
+      }
+    },
+
+    "ty.disableLanguageServices": true,
+    "ty.diagnosticMode": "off",
+    "ty.showSyntaxErrors": false,
+
+    "errorLens.enabled": false,
+    "errorLens.alignMessage": {
+      "start": 0,
+      "end": 0,
+      "minimumMargin": 8,
+      "padding": [
+        0,
+        0
+      ],
+      "useFixedPosition": true
+    },
+    "errorLens.messageMaxChars": 500,
+    "errorLens.messageTemplate": "$severity [$source] $message",
+    "errorLens.excludeBySource": [
+      "pylance"
+    ],
+
+    "rust-analyzer.cargo.extraEnv": {
+      "LIBTORCH": "/home/yeongmin.bae/libtorch",
+      "LIBTORCH_LIB": "/home/yeongmin.bae/libtorch",
+      "LIBTORCH_INCLUDE": "/home/yeongmin.bae/libtorch",
+      "LIBTORCH_BYPASS_VERSION_CHECK": "1"
+    },
+    "rust-analyzer.restartServerOnConfigChange": true,
+
+    "remote.SSH.remotePlatform": {
+      "ssh yeongmin.bae@10.10.0.53": "linux",
+      "ssh s": "linux"
+    },
+
+    "json.schemaDownload.enable": true,
+    "errorLens.enabledDiagnosticLevels": [
+      "error",
+      "info"
+    ],
+    "settings.cycle": [
+      {
+        "id": "toggleCursorPyright",
+        "overrideWorkspaceSettings": true,
+        "values": [
+          {
+            "cursorpyright.analysis.typeCheckingMode": "recommended"
+          },
+          {
+            "cursorpyright.analysis.typeCheckingMode": "off"
+          }
+        ]
+      }
+    ],
+    "git.autofetch": true,
+    "workbench.statusBar.visible": false
+  }

@@ -54,29 +54,30 @@ cat <<'EOF' > "$OMO_FILE"
     "modelConcurrency": {
       "openai/gpt-5.3-codex-spark": 100,
       "openai/gpt-5.3-codex": 100,
+      "openai/gpt-5.4": 100,
       "openai/gpt-5.2": 100
     }
   },
   "agents": {
-    "sisyphus": { "model": "openai/gpt-5.3-codex", "variant": "medium" },
-    "prometheus": { "model": "openai/gpt-5.2", "variant": "xhigh" },
-    "metis": { "model": "openai/gpt-5.2", "variant": "xhigh" },
-    "momus": { "model": "openai/gpt-5.2", "variant": "high" },
-    "atlas": { "model": "openai/gpt-5.3-codex", "variant": "xhigh" },
-    "oracle": { "model": "openai/gpt-5.2", "variant": "xhigh" },
-    "librarian": { "model": "openai/gpt-5.3-codex-spark", "variant": "low" },
-    "explore": { "model": "openai/gpt-5.3-codex-spark", "variant": "low" },
-    "multimodal-looker": { "model": "openai/gpt-5.2", "variant": "high" }
+    "sisyphus": { "model": "openai/gpt-5.4", "variant": "medium" },
+    "prometheus": { "model": "openai/gpt-5.4", "variant": "xhigh" },
+    "metis": { "model": "openai/gpt-5.4", "variant": "xhigh" },
+    "momus": { "model": "openai/gpt-5.4", "variant": "high" },
+    "atlas": { "model": "openai/gpt-5.4", "variant": "xhigh" },
+    "oracle": { "model": "openai/gpt-5.4", "variant": "xhigh" },
+    "librarian": { "model": "openai/gpt-5.4", "variant": "low" },
+    "explore": { "model": "openai/gpt-5.4", "variant": "low" },
+    "multimodal-looker": { "model": "openai/gpt-5.4", "variant": "high" }
   },
   "categories": {
-    "quick": { "model": "openai/gpt-5.3-codex-spark", "variant": "low" },
-    "unspecified-low": { "model": "openai/gpt-5.3-codex-spark", "variant": "low" },
-    "unspecified-high": { "model": "openai/gpt-5.3-codex", "variant": "high" },
-    "deep": {"model": "openai/gpt-5.3-codex", "variant": "xhigh"},
-    "ultrabrain": { "model": "openai/gpt-5.2", "variant": "xhigh" },
-    "visual-engineering": { "model": "openai/gpt-5.3-codex", "variant": "high" },
-    "writing": { "model": "openai/gpt-5.2", "variant": "medium" },
-    "artistry": { "model": "openai/gpt-5.2", "variant": "high" }
+    "quick": { "model": "openai/gpt-5.4", "variant": "low" },
+    "unspecified-low": { "model": "openai/gpt-5.4", "variant": "low" },
+    "unspecified-high": { "model": "openai/gpt-5.4", "variant": "high" },
+    "deep": {"model": "openai/gpt-5.4", "variant": "xhigh"},
+    "ultrabrain": { "model": "openai/gpt-5.4", "variant": "xhigh" },
+    "visual-engineering": { "model": "openai/gpt-5.4", "variant": "high" },
+    "writing": { "model": "openai/gpt-5.4", "variant": "medium" },
+    "artistry": { "model": "openai/gpt-5.4", "variant": "high" }
   }
 }
 EOF
@@ -90,14 +91,8 @@ cat <<'EOF' > "$MAIN_FILE"
 {
   "$schema": "https://opencode.ai/config.json",
   "default_agent": "sisyphus",
-  "theme": "system",
   "share": "manual",
   "autoupdate": true,
-  "keybinds": {
-    "app_exit": "ctrl+d,<leader>q",
-    "session_interrupt": "ctrl+c,escape",
-    "input_clear": "ctrl+l"
-  },
   "plugin": [
     "oh-my-opencode",
     "opencode-openai-codex-auth"
@@ -114,16 +109,10 @@ cat <<'EOF' > "$MAIN_FILE"
     }
   },
 
-  "tui": {
-    "scroll_speed": 12,
-    "scroll_acceleration": { "enabled": true },
-    "diff_style": "auto"
-  },
-
   "agent": {
     "charles": {
       "description": "A-tier MAIN for Research and Complex Problem solving, The savant. Reasoning Complexity: extreme. Handles the most challenging tasks with deep analysis and multi-step problem solving.",
-      "model": "openai/gpt-5.2",
+      "model": "openai/gpt-5.4",
       "permission": {
         "write": "allow",
         "edit": "allow",
@@ -142,7 +131,7 @@ cat <<'EOF' > "$MAIN_FILE"
     
     "plan": {
       "mode": "primary",
-      "model": "openai/gpt-5.3-codex",
+      "model": "openai/gpt-5.4",
       "reasoningEffort": "xhigh",
       "permission": {
         "bash": {
@@ -157,7 +146,7 @@ cat <<'EOF' > "$MAIN_FILE"
 
     "build": {
       "mode": "primary",
-      "model": "openai/gpt-5.3-codex-spark",
+      "model": "openai/gpt-5.4",
       "reasoningEffort": "xhigh",
       "permission": {
         "bash": {
@@ -172,12 +161,14 @@ cat <<'EOF' > "$MAIN_FILE"
 
     "explore-shallower": {
       "mode": "subagent",
-      "model": "openai/gpt-5.3-codex-spark"
+      "model": "openai/gpt-5.4",
+      "reasoningEffort": "low"
     },
 
     "explore-deeper": {
       "mode": "subagent",
-      "model": "openai/gpt-5.3-codex"
+      "model": "openai/gpt-5.4",
+      "reasoningEffort": "xhigh"
     }
   }
 }
